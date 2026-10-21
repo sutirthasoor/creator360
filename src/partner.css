@@ -1,0 +1,145 @@
+/* Influencer dashboard and admin panel. Built on the design tokens in styles.css; classes use the pt- prefix
+   where an existing cm- class has a different meaning. */
+
+.cm-card.cm-form, .cm-card.pt-detail { display: grid; align-items: stretch; gap: 16px; width: 100%; }
+.cm-card.cm-narrow { width: 100%; max-width: 760px; align-items: stretch; }
+.cm-h3 { margin: 8px 0 0; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; }
+.cm-btn-sm { min-height: 34px; padding: 0 14px; font-size: 13px; border-radius: 8px; }
+.cm-empty { padding: 24px; border: 1px dashed var(--border); border-radius: 14px; text-align: center; }
+.cm-linkbtn { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; }
+.cm-textarea { min-height: 110px; padding-block: 12px; resize: vertical; font-family: inherit; }
+select.cm-input { appearance: auto; }
+.cm-fieldset { border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin: 0; display: grid; gap: 12px; min-width: 0; }
+.cm-fieldset legend { padding: 0 6px; }
+.cm-inline-form { max-width: 520px; }
+.cm-flag { color: var(--destructive); }
+
+/* sign in */
+.pt-auth-wrap { display: grid; place-items: start center; padding-block: clamp(24px, 5vw, 64px); }
+.cm-card.pt-auth-card { width: 100%; max-width: 460px; padding: clamp(22px, 4vw, 36px); border-radius: 24px; box-shadow: var(--shadow-card); order: 0; }
+
+/* tabs (buttons) */
+.pt-tabs { display: flex; gap: 4px; padding: 4px; overflow-x: auto; border-radius: 12px; background: var(--muted); scrollbar-width: none; }
+.pt-tabs::-webkit-scrollbar { display: none; }
+.pt-tab { flex: none; min-height: 42px; padding: 0 18px; border: 0; border-radius: 9px; background: transparent; color: var(--muted-foreground); font: 600 14px/1 var(--font-body); cursor: pointer; white-space: nowrap; }
+.pt-tab:hover { color: var(--foreground); }
+.pt-tab.is-active { background: var(--card); color: var(--primary); box-shadow: var(--shadow-card); }
+.pt-tab:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* stats */
+.pt-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 900px) { .pt-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.pt-stat { display: grid; gap: 4px; align-content: start; padding: 18px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); min-width: 0; }
+.pt-stat-label { font-size: 13px; font-weight: 600; color: var(--muted-foreground); }
+.pt-stat-value { font-family: var(--font-heading); font-size: clamp(1.3rem, 2.4vw, 1.75rem); font-weight: 700; overflow-wrap: anywhere; }
+.pt-stat-hint { font-size: 12.5px; color: var(--muted-foreground); }
+.pt-stat-good .pt-stat-value { color: oklch(48% .14 150); }
+.pt-stat-warn .pt-stat-value { color: oklch(52% .14 70); }
+
+/* badges */
+.pt-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; border: 1px solid transparent; }
+.pt-badge-good { background: color-mix(in oklab, oklch(62% .17 150) 14%, var(--card)); color: oklch(40% .12 150); }
+.pt-badge-info { background: color-mix(in oklab, var(--primary) 12%, var(--card)); color: var(--primary); }
+.pt-badge-warn { background: color-mix(in oklab, oklch(75% .15 80) 22%, var(--card)); color: oklch(42% .1 70); }
+.pt-badge-bad { background: color-mix(in oklab, var(--destructive) 12%, var(--card)); color: var(--destructive); }
+.pt-badge-muted { background: var(--muted); color: var(--muted-foreground); }
+
+/* ============================================================
+   BOXED TABLES  (matches .pt-table used in ui.jsx and .cm-table)
+   ============================================================ */
+.pt-table-wrap,
+.cm-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.pt-table,
+.cm-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12.5px;
+}
+
+.pt-table th,
+.pt-table td,
+.cm-table th,
+.cm-table td {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.pt-table th:last-child,
+.pt-table td:last-child,
+.cm-table th:last-child,
+.cm-table td:last-child { border-right: 0; }
+
+.pt-table tr:last-child td,
+.cm-table tr:last-child td { border-bottom: 0; }
+
+.pt-table th,
+.cm-table th {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  background: var(--surface-soft);
+  white-space: nowrap;
+}
+
+.pt-table td,
+.cm-table td { white-space: nowrap; }
+
+.pt-table tbody tr:nth-child(even) td,
+.cm-table tbody tr:nth-child(even) td {
+  background: color-mix(in oklab, var(--surface-soft) 60%, var(--card));
+}
+
+.pt-table .is-right,
+.cm-table .is-right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.pt-table tr.is-click,
+.cm-table tr.is-click { cursor: pointer; }
+
+.pt-table tr.is-click:hover td,
+.cm-table tr.is-click:hover td { background: var(--muted); }
+
+.pt-table input[type="checkbox"],
+.cm-table input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .pt-table th, .pt-table td,
+  .cm-table th, .cm-table td { padding: 7px 9px; }
+  .pt-table, .cm-table { font-size: 12px; }
+}
+
+/* toolbars and detail panel */
+.pt-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.pt-toolbar .cm-field { min-width: 180px; flex: 1 1 200px; max-width: 360px; }
+.cm-card.pt-detail { border-color: var(--primary); }
+.pt-detail-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.pt-detail-head p { margin: 2px 0 0; }
+
+/* promotion */
+.cm-promo { display: grid; gap: 16px; }
+@media (min-width: 900px) { .cm-promo { grid-template-columns: 1.4fr 1fr; align-items: start; } }
+.cm-promo .cm-card { align-items: stretch; }
+.cm-code { display: block; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-soft); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; word-break: break-all; }
+.cm-code-lg { font-size: 22px; font-weight: 700; letter-spacing: .08em; text-align: center; padding: 18px; }
+.cm-code-sm { font-size: 12px; background: none; border: 0; padding: 0; word-break: break-word; }
